@@ -7,3 +7,6 @@ logs/
 .env
 .ipynb_checkpoints
 data/raw/
+artifacts/
+mlflow.db
+models/*.pkl

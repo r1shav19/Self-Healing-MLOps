@@ -1,3 +1,4 @@
+import joblib
 import mlflow
 import mlflow.sklearn
 
@@ -57,6 +58,8 @@ def train_model(X, y):
             sk_model=model,
             artifact_path="fraud_model"
         )
+    joblib.dump(model, "models/fraud_model.pkl")
+    print("✅ Model saved locally")
 
     print("\n✅ Training Finished Successfully")
     print(f"✅ ROC-AUC Score: {auc:.4f}")
