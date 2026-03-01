@@ -1,0 +1,27 @@
+# Model Training Configuration
+
+data_ingestion:
+  raw_data_path: "data/raw"
+
+preprocessing:
+  missing_value_strategy: "mean"  # Options: drop, mean, forward_fill
+  remove_outliers: true
+  encode_categorical: true
+  scale_features: true
+
+training:
+  model_type: "random_forest"  # Options: random_forest, xgboost, neural_network
+  model_path: "models"
+
+  # Random Forest parameters
+  n_estimators: 100
+  max_depth: 10
+  random_state: 42
+
+  # Train/test split
+  test_size: 0.2
+  validation_split: 0.1
+
+evaluation:
+  metric_to_track: "f1"
+  degradation_threshold: 0.05

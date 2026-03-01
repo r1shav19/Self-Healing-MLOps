@@ -1,0 +1,49 @@
+# Monitoring Configuration
+
+performance_monitoring:
+  enabled: true
+  check_interval: 3600  # Seconds
+  metrics_to_track:
+    - accuracy
+    - precision
+    - recall
+    - f1
+
+data_drift:
+  enabled: true
+  check_interval: 3600
+  drift_threshold: 0.1
+  statistical_test: "kolmogorov_smirnov"
+
+# Baseline metrics for detecting degradation
+baseline_metrics:
+  accuracy: 0.95
+  precision: 0.94
+  recall: 0.93
+  f1: 0.93
+
+# Alerting
+alerting:
+  enabled: true
+  alert_channels:
+    - type: "email"
+      enabled: false
+      recipients: ["admin@example.com"]
+    - type: "slack"
+      enabled: false
+      webhook_url: "${SLACK_WEBHOOK_URL}"
+    - type: "pagerduty"
+      enabled: false
+      integration_key: "${PAGERDUTY_KEY}"
+
+# Alerts thresholds
+alerts:
+  - name: "accuracy_degradation"
+    condition: "accuracy < 0.90"
+    severity: "critical"
+  - name: "data_drift_detected"
+    condition: "drift_detected == true"
+    severity: "warning"
+  - name: "prediction_latency"
+    condition: "latency_p99 > 1000"  # milliseconds
+    severity: "warning"

@@ -1,0 +1,45 @@
+# Automated Retraining Configuration
+
+retraining:
+  enabled: true
+
+  # Triggers for retraining
+  triggers:
+    performance_degradation: true
+    data_drift: true
+    schedule: true
+
+  # Performance degradation settings
+  performance:
+    degradation_threshold: 0.05
+    metric_to_track: "f1"
+
+  # Data drift settings
+  drift_detection:
+    enabled: true
+    drift_threshold: 0.1
+    check_interval: 3600
+
+  # Schedule-based retraining
+  schedule:
+    enabled: true
+    frequency: "daily"  # Options: hourly, daily, weekly, monthly
+    time: "02:00"  # UTC time
+
+  # Retraining job settings
+  job:
+    max_retries: 3
+    timeout: 3600  # Seconds
+    parallel_jobs: 1
+    data_lookback_days: 30
+
+  # Model promotion
+  model_promotion:
+    auto_promote: false
+    promotion_strategy: "accuracy"  # Options: accuracy, f1, custom
+    minimum_improvement: 0.02
+
+  # Versioning
+  versioning:
+    keep_previous_versions: 5
+    archive_old_models: true
