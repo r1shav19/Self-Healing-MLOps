@@ -6,3 +6,4 @@ models/
 logs/
 .env
 .ipynb_checkpoints
+data/raw/
