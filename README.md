@@ -10,6 +10,6 @@ Production-ready Machine Learning system capable of:
 
 - [x] Phase 1 — Project Architecture
 - [x] Phase 2 — Training Pipeline & MLflow Tracking
-- [ ] Phase 3 — Model Deployment API
+- [x] Phase 3 — Model Deployment API
 - [ ] Phase 4 — Monitoring & Drift Detection
 - [ ] Phase 5 — Self-Healing Retraining
