@@ -11,4 +11,3 @@ artifacts/
 mlflow.db
 models/*.pkl
 monitoring/transaction_log.csv
-.DS_Store
