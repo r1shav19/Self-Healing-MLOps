@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib
 import numpy as np
+from monitoring.logger import log_transaction
 
 # Load trained model
 model = joblib.load("models/fraud_model.pkl")
@@ -34,6 +35,7 @@ def predict(transaction: Transaction):
     prediction = model.predict(data)[0]
     probability = model.predict_proba(data)[0][1]
     
+    log_transaction(transaction.features, int(prediction))
     
     return {
         "fraud_prediction": int(prediction),

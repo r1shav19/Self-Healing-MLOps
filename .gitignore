@@ -10,3 +10,4 @@ data/raw/
 artifacts/
 mlflow.db
 models/*.pkl
+monitoring/transaction_log.csv
