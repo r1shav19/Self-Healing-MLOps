@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+from monitoring.retrainer import retrain_model
 
 TRAIN_PATH = "data/raw/creditcard.csv"
 LOG_PATH = "monitoring/transaction_log.csv"
@@ -11,6 +11,8 @@ def detect_drift():
     train = pd.read_csv(TRAIN_PATH)
     live = pd.read_csv(LOG_PATH)
 
+    live = live.tail(200)
+    
     train = train.drop(["Time", "Class"], axis=1)
 
     drift_scores = {}
@@ -27,6 +29,7 @@ def detect_drift():
 
     if avg_drift > 0.5:
         print("⚠️ DATA DRIFT DETECTED")
+        retrain_model()
     else:
         print("✅ Data Stable")
 
